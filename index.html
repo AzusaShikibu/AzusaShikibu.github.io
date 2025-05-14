@@ -1,182 +1,65 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
+    <meta charset="UTF-8">
+    <title>固定表单界面</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #F0F0F0;
-        }
-
+        body { font-family: Arial, sans-serif; }
         .container {
-            width: 80%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .title {
-            background: #ADD8E6;
-            color: #FFFFFF;
-            font-size: 40px;
-            text-align: center;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .columns {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .column {
-            width: 23%;
-            min-width: 150px;
-            background: #FFFFFF;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-            margin-bottom: 20px;
-            transition: transform 0.3s;
-        }
-
-        .column:hover {
-            transform: scale(1.1);
-        }
-
-        .column h2 {
-            font-size: 20px;
-            color: #333;
-            margin: 0;
-        }
-
-        .column ul {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0;
-        }
-
-        .column li {
-            font-size: 16px;
-            color: #666;
-            margin: 5px 0;
-        }
-
-        .column a {
-            color: #66ccff;
-            text-decoration: none;
-        }
-
-        .search {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .search input {
             width: 300px;
-            height: 30px;
-            border: 1px solid #39c5bb;
-            border-radius: 5px;
-            padding: 5px 10px;
-            font-size: 16px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
         }
-
-        .search button {
-            width: 100px;
-            height: 30px;
-            border: none;
-            border-radius: 5px;
-            background: #39c5bb;
-            color: #FFFFFF;
-            font-size: 16px;
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-
-        .footer {
-            background: #ADD8E6;
-            color: #FFFFFF;
-            font-size: 14px;
+        button {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #display {
+            border: 1px solid #ccc;
+            height: 150px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 10px;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="title">日安，式部卿</div>
-        <div class="search">
-            <form action="http://www.baidu.com/s" method="get" target="_blank">
-                <input type="text" name="wd" placeholder="请输入搜索内容">
-                <button type="submit">百度搜索</button>
-            </form>
-            <form action="http://www.bing.com/search" method="get" target="_blank">
-                <input type="text" name="q" placeholder="请输入搜索内容">
-                <button type="submit">必应搜索</button>
-            </form>
-        </div>
-        
-        <div class="columns">
-            <!-- <div class="column">
-                <h2>第一列</h2>
-                <ul>
-                    <li><a href="https://www.baidu.com/">百度</a></li>
-                    <li><a href="#">链接2</a></li>
-                    <li><a href="#">链接3</a></li>
-                    <li><a href="#">链接4</a></li>
-                    <li><a href="#">链接5</a></li>
-                    <li><a href="#">链接6</a></li>
-                    <li><a href="#">链接7</a></li>
-                    <li><a href="#">链接8</a></li>
-                    <li><a href="#">链接9</a></li>
-                    <li><a href="#">链接10</a></li>
-                </ul>
-            </div> -->
-            <div class="column">
-                <h2>EE&CS</h2>
-                <ul>
-                    <li><a href="https://oshwhub.com/">立创开源广场</a></li>
-                    <li><a href="https://lceda.cn/editor">立创EDA普通版</a></li>
-                    <li><a href="https://pro.lceda.cn/editor">立创EDA专业版</a></li>
-                    <li><a href="https://member.jlc.com/">嘉立创下单</a></li>
-                    <li><a href="https://www.jlcfa.com/">嘉立创FA</a></li>
-                    <li><a href="https://www.alldatasheet.com/">datasheet</a></li>
+        <form>
+            <label for="name">姓名：</label>
+            <input type="text" id="name" placeholder="请输入姓名">
+            
+            <label for="phone">电话：</label>
+            <input type="text" id="phone" placeholder="请输入电话">
+            
+            <button type="button" onclick="updateDisplay()">按钮</button>
+            
+            <div id="display">显示文字</div>
+        </form>
+    </div>
 
-                    <li><a href="https://github.com/">github</a></li>
-                </ul></div>
-                <div class="column">
-                    <h2>娱乐&BBS</h2>
-                    <ul>
-                        <li><a href="http://www.bilibili.com">BillBill</a></li>
-                        <li><a href="http://www.douyin.com">开抖</a></li>
-                        <li><a href="http://www.dmh8.com">樱花动漫</a></li>
-                        <li><a href="http://bbs.nga.cn">nga</a></li>
-                        <li><a href="http://www.crystalradio.cn/">矿石收音机论坛</a></li>
-                        <li><a href="https://aweidao1.com">a岛</a></li>
-                        <li><a href="https://bbs.saraba1st.com/2b/forum.php">s1</a></li>
-                        <li><a href="http://www.twitter.com">推特</a></li>
-                        <li><a href="http://www.pixiv.net">pixiv</a></li>
-                        <li><a href="#">链接10</a></li>
-                    </ul>
-                </div>
-                <div class="column">
-                    <h2>生活&学习</h2>
-                    <ul>
-                        <li><a href="http://jwzx.hrbust.edu.cn/homepage/index.do">HUST</a></li>
-                        <li><a href="http://hrbust.fanya.chaoxing.com/portal">学习通</a></li>
-                        <li><a href="#">傻逼智慧智慧了个锤子</a></li>
-                        <li><a href="https://mail.126.com/#return">126邮箱</a></li>
-                        <li><a href="#">链接5</a></li>
-                        <li><a href="http://47.76.51.7:6010">个人网盘主要</a></li>
-                        <li><a href="http://shikibu.sbs">chatgpt</a></li>
-                        <li><a href="47.76.51.7:6010">111</a></li>
-                        <li><a href="#">链接9</a></li>
-                        <li><a href="#">链接10</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer">
-                本网页用作个人网页导航，遵守html2.0设计规范，并试图使用md设计风格，由copilot协助设计
-            </div>
-        </div>
-    </body>
-    </html>
+    <script>
+        function updateDisplay() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            document.getElementById('display').textContent = 
+                `姓名：${name}，电话：${phone}`;
+        }
+    </script>
+</body>
+</html>
+    
