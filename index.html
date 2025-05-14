@@ -2,63 +2,132 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>固定表单界面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定布局计数器</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .container {
-            width: 300px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
-        input {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .counter-container {
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .result-display {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 30px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
         }
         button {
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            padding: 10px 20px;
-            border-radius: 4px;
+            width: 120px;
+            height: 45px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
-        #display {
-            border: 1px solid #ccc;
-            height: 150px;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+        .btn-yellow {
+            background-color: #FFD700;
+        }
+        .btn-yellow:hover {
+            background-color: #FFC107;
+        }
+        .btn-green {
+            background-color: #4CAF50;
+        }
+        .btn-green:hover {
+            background-color: #45a049;
+        }
+        .btn-reset {
+            background-color: #f44336;
+        }
+        .btn-reset:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <form>
-            <label for="name">姓名：</label>
-            <input type="text" id="name" placeholder="请输入姓名">
-            
-            <label for="phone">电话：</label>
-            <input type="text" id="phone" placeholder="请输入电话">
-            
-            <button type="button" onclick="updateDisplay()">按钮</button>
-            
-            <div id="display">显示文字</div>
-        </form>
+    <div class="counter-container">
+        <h2>有趣计数器</h2>
+        <div class="result-display">结果显示：<span id="result">0</span></div>
+        <button id="increment1" class="btn-yellow">单击+1</button>
+        <button id="decrement1" class="btn-yellow">单击-1</button>
+        <button id="increment2" class="btn-green">双击+2</button>
+        <button id="decrement2" class="btn-green">双击-2</button>
+        <button id="reset" class="btn-reset">长按归0</button>
     </div>
-
     <script>
-        function updateDisplay() {
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            document.getElementById('display').textContent = 
-                `姓名：${name}，电话：${phone}`;
-        }
+        // 获取元素
+        const resultElement = document.getElementById('result');
+        const increment1Button = document.getElementById('increment1');
+        const decrement1Button = document.getElementById('decrement1');
+        const increment2Button = document.getElementById('increment2');
+        const decrement2Button = document.getElementById('decrement2');
+        const resetButton = document.getElementById('reset');
+
+        let count = 0;
+
+        // 单击+1
+        increment1Button.addEventListener('click', () => {
+            count++;
+            resultElement.textContent = count;
+        });
+
+        // 单击-1
+        decrement1Button.addEventListener('click', () => {
+            count--;
+            resultElement.textContent = count;
+        });
+
+        // 双击+2
+        increment2Button.addEventListener('dblclick', () => {
+            count += 2;
+            resultElement.textContent = count;
+        });
+
+        // 双击-2
+        decrement2Button.addEventListener('dblclick', () => {
+            count -= 2;
+            resultElement.textContent = count;
+        });
+
+        // 长按归0
+        let longPressTimer;
+        resetButton.addEventListener('mousedown', () => {
+            longPressTimer = setTimeout(() => {
+                count = 0;
+                resultElement.textContent = count;
+            }, 1000);
+        });
+
+        resetButton.addEventListener('mouseup', () => {
+            clearTimeout(longPressTimer);
+        });
+
+        resetButton.addEventListener('mouseleave', () => {
+            clearTimeout(longPressTimer);
+        });
     </script>
 </body>
 </html>
